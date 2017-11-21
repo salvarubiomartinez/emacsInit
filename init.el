@@ -43,14 +43,23 @@
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "2a739405edf418b8581dcd176aaf695d319f99e3488224a3c495cb0f9fd814e3" default)))
  '(package-selected-packages
    (quote
-    (spacemacs-theme zenburn-theme tide which-key helm flycheck evil company))))
+    (highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
 ;; flycheck
-;;(setq flycheck-check-syntax-automatically '(mode-enabled save new-line idle-change))
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 (load-theme 'spacemacs-dark t)
 (set-face-attribute 'default nil :height 120)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; PACKAGE: highlight-numbers         ;;
+;;                                    ;;
+;; GROUP: Faces -> Number Font Lock   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-hook 'prog-mode-hook 'highlight-numbers-mode)
