@@ -1,9 +1,11 @@
 (require 'package)
   (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
     (package-initialize)
+;;; Code:
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+(electric-pair-mode 1)
 (require 'evil)
 (evil-mode 1)
 (require 'helm-config)
@@ -18,12 +20,9 @@
   (interactive)
   (tide-setup)
   (flycheck-mode +1)
-  ;;(setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (setq flycheck-check-syntax-automatically '(save mode-enabled new-line))
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
   (company-mode +1))
 
 ;; aligns annotation to the right hand side
@@ -43,7 +42,7 @@
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "2a739405edf418b8581dcd176aaf695d319f99e3488224a3c495cb0f9fd814e3" default)))
  '(package-selected-packages
    (quote
-    (highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company))))
+    (magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -51,9 +50,10 @@
  ;; If there is more than one, they won't work right.
  )
 
-;; flycheck
+;; flycheck global
 (add-hook 'after-init-hook #'global-flycheck-mode)
-
+;; company global
+(add-hook 'after-init-hook 'global-company-mode)
 (load-theme 'spacemacs-dark t)
 (set-face-attribute 'default nil :height 120)
 
@@ -63,3 +63,5 @@
 ;; GROUP: Faces -> Number Font Lock   ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-hook 'prog-mode-hook 'highlight-numbers-mode)
+;;; magit:
+(global-set-key (kbd "C-x g") 'magit-status)
