@@ -8,13 +8,16 @@
 (electric-pair-mode 1)
 (require 'evil)
 (evil-mode 1)
+(require 'evil-surround)
+(global-evil-surround-mode 1)
+;;(add-hook 'evil-mode-hook 'turn-on-surround-mode)
 (require 'helm-config)
 (helm-mode 1)
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
 (global-set-key (kbd "C-x C-b") #'helm-mini)
-(which-key-mode 1)
+;;(which-key-mode 1)
 ;;TypeScript
 (defun setup-tide-mode ()
   (interactive)
@@ -39,10 +42,10 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "2a739405edf418b8581dcd176aaf695d319f99e3488224a3c495cb0f9fd814e3" default)))
+    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "2a739405edf418b8581dcd176aaf695d319f99e3488224a3c495cb0f9fd814e3" default)))
  '(package-selected-packages
    (quote
-    (magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company))))
+    (solarized-theme evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -55,7 +58,7 @@
 ;; company global
 (add-hook 'after-init-hook 'global-company-mode)
 (load-theme 'spacemacs-dark t)
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :height 100)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PACKAGE: highlight-numbers         ;;
