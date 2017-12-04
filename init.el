@@ -55,7 +55,7 @@
 ;; company global
 (add-hook 'after-init-hook 'global-company-mode)
 (load-theme 'spacemacs-dark t)
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :height 110)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PACKAGE: highlight-numbers         ;;
