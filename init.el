@@ -17,6 +17,7 @@
 (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
 (global-set-key (kbd "C-x C-b") #'helm-mini)
+(global-set-key (kbd "C-x p") #'project-find-file)
 ;;(which-key-mode 1)
 ;;TypeScript
 (defun setup-tide-mode ()
