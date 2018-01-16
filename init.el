@@ -97,5 +97,6 @@
 ;;rainblow delimiters
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'highlight-parentheses-mode)
 (provide 'init)
 ;;;; init.el ends here
