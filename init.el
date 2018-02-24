@@ -1,6 +1,30 @@
 (require 'package)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-    (package-initialize)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+
+(package-initialize)
+
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+
+(use-package evil :ensure t)
+(use-package evil-surround :ensure t)
+(use-package helm :ensure t)
+(use-package company :ensure t)
+(use-package spacemacs-theme :ensure t)
+(use-package exwm :ensure t :config (require 'exwm-config) (exwm-config-default))
+(use-package highlight-numbers :ensure t)
+(use-package rainbow-delimiters :ensure t)
+(use-package highlight-parentheses :ensure t)
+(use-package tide :ensure t)
+(use-package omnisharp :ensure t)
+
 ;;; Code:
 (tool-bar-mode -1)
 (menu-bar-mode -1)
