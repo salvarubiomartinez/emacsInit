@@ -32,6 +32,7 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (electric-pair-mode 1)
+(global-auto-revert-mode t)
 (require 'evil)
 (evil-mode 1)
 (require 'evil-surround)
