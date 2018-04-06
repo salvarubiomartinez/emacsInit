@@ -48,7 +48,7 @@
 ;;(which-key-mode 1)
 
 ;;slime lisp
-(setq inferior-lisp-program "/opt/sbcl/bin/sbcl")
+(setq inferior-lisp-program "/usr/bin/sbcl")
 ;;TypeScript
 (defun setup-tide-mode ()
   (interactive)
