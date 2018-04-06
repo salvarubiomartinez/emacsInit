@@ -46,6 +46,9 @@
 (global-set-key (kbd "C-x C-b") #'helm-mini)
 (global-set-key (kbd "C-x p") #'project-find-file)
 ;;(which-key-mode 1)
+
+;;slime lisp
+(setq inferior-lisp-program "/opt/sbcl/bin/sbcl")
 ;;TypeScript
 (defun setup-tide-mode ()
   (interactive)
