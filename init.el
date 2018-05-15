@@ -25,6 +25,7 @@
 (use-package highlight-parentheses :ensure t)
 (use-package tide :ensure t)
 (use-package web-mode :ensure t)
+(use-package magit :ensure t)
 ;;(use-package omnisharp :ensure t)
 
 ;;; Code:
