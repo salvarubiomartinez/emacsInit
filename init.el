@@ -131,4 +131,8 @@
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'prog-mode-hook 'highlight-parentheses-mode)
 (provide 'init)
-;;;; init.el ends here
+;;(defun connect-remote ()
+;;  (interactive)
+;;  (dired "/user@server:/home/user"))
+(provide 'init)
+;;; init.el ends here
