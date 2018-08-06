@@ -26,6 +26,7 @@
 (use-package tide :ensure t)
 (use-package web-mode :ensure t)
 (use-package magit :ensure t)
+(use-package which-key :ensure t)
 ;;(use-package omnisharp :ensure t)
 
 ;;; Code:
@@ -47,7 +48,7 @@
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
 (global-set-key (kbd "C-x C-b") #'helm-mini)
 (global-set-key (kbd "C-x p") #'project-find-file)
-;;(which-key-mode 1)
+(which-key-mode 1)
 
 ;;slime lisp
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
