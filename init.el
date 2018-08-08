@@ -83,7 +83,8 @@
  '(org-agenda-files (quote ("~/Dropbox/agenda.org")))
  '(package-selected-packages
    (quote
-    (flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company))))
+    (flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
+ '(send-mail-function 'smtpmail-send-it))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
