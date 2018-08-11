@@ -16,7 +16,7 @@
 
 (use-package evil :ensure t)
 (use-package evil-surround :ensure t)
-(use-package helm :ensure t)
+;;(use-package helm :ensure t)
 (use-package company :ensure t)
 (use-package flycheck :ensure t)
 ;;(use-package spacemacs-theme :ensure t)
@@ -37,18 +37,31 @@
 (scroll-bar-mode -1)
 (electric-pair-mode 1)
 (global-auto-revert-mode t)
-(require 'evil)
+;;(require 'evil)
 (evil-mode 1)
-(require 'evil-surround)
+;;(require 'evil-surround)
 (global-evil-surround-mode 1)
 ;;(add-hook 'evil-mode-hook 'turn-on-surround-mode)
-(require 'helm-config)
-(helm-mode 1)
-(global-set-key (kbd "M-x") #'helm-M-x)
-(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
-(global-set-key (kbd "C-x C-f") #'helm-find-files)
-(global-set-key (kbd "C-x C-b") #'helm-mini)
-(global-set-key (kbd "C-x p") #'project-find-file)
+;;(require 'helm-config)
+;;(helm-mode 1)
+;;(global-set-key (kbd "M-x") #'helm-M-x)
+;;(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+;;(global-set-key (kbd "C-x C-f") #'helm-find-files)
+;;(global-set-key (kbd "C-x C-b") #'helm-mini)
+;;(global-set-key (kbd "C-x p") #'project-find-file)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+;; ido m-x
+    (global-set-key
+     "\M-x"
+     (lambda ()
+       (interactive)
+       (call-interactively
+        (intern
+         (ido-completing-read
+          "M-x "
+          (all-completions "" obarray 'commandp))))))
 (which-key-mode 1)
 
 ;;slime lisp
@@ -83,14 +96,16 @@
  '(org-agenda-files (quote ("~/Dropbox/agenda.org")))
  '(package-selected-packages
    (quote
-    (flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company))))
+    (flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
+;;epa enable ask for passphrase
+ (setq epa-pinentry-mode 'loopback)
 ;; flycheck global
 (add-hook 'after-init-hook #'global-flycheck-mode)
 ;; company global
