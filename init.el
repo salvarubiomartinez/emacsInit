@@ -1,4 +1,4 @@
-;;; pacakage
+;;; pacakage:
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
@@ -14,60 +14,70 @@
 (eval-when-compile
   (require 'use-package))
 
-(use-package evil :ensure t)
-(use-package evil-surround :ensure t)
-;;(use-package helm :ensure t)
-(use-package company :ensure t)
-(use-package flycheck :ensure t)
-;;(use-package spacemacs-theme :ensure t)
-;;(use-package exwm :ensure t :config (require 'exwm-config) (exwm-config-default))
-(use-package highlight-numbers :ensure t)
-(use-package rainbow-delimiters :ensure t)
-(use-package highlight-parentheses :ensure t)
-(use-package tide :ensure t)
-(use-package web-mode :ensure t)
-(use-package magit :ensure t)
-(use-package which-key :ensure t)
-;;(use-package omnisharp :ensure t)
-
-;;; Code:
-(setq inhibit-startup-screen t)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(electric-pair-mode 1)
-(global-auto-revert-mode t)
-;;(require 'evil)
-(evil-mode 1)
-;;(require 'evil-surround)
-(global-evil-surround-mode 1)
-;;(add-hook 'evil-mode-hook 'turn-on-surround-mode)
-;;(require 'helm-config)
-;;(helm-mode 1)
-;;(global-set-key (kbd "M-x") #'helm-M-x)
-;;(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
-;;(global-set-key (kbd "C-x C-f") #'helm-find-files)
-;;(global-set-key (kbd "C-x C-b") #'helm-mini)
-;;(global-set-key (kbd "C-x p") #'project-find-file)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
-;; ido m-x
-    (global-set-key
-     "\M-x"
-     (lambda ()
-       (interactive)
-       (call-interactively
-        (intern
-         (ido-completing-read
-          "M-x "
-          (all-completions "" obarray 'commandp))))))
-(which-key-mode 1)
-
-;;slime lisp
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
-;;TypeScript
-(defun setup-tide-mode ()
+;;; packages:
+(use-package evil
+  :ensure t
+  :config
+  (evil-mode 1))
+(use-package evil-surround
+  :ensure t
+  :config
+  (evil-surround-mode 1))
+(use-package helm
+  :disabled
+  :ensure t
+  :bind (("M-x" . helm-M-x)
+	 ("C-x r b" . helm-filtered-bookmarks)
+	 ("C-x C-f" . helm-find-files)
+	 ("C-x C-b" . helm-mini))
+  :config
+  (require 'helm-config)
+  (helm-mode 1))
+(use-package ivy
+  :ensure t
+  :bind ("C-s" . swiper)
+  :hook (after-init . ivy-mode)
+  :config
+;;  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (counsel-mode 1)
+  (setq ivy-display-style 'fancy))
+(use-package company
+  :ensure t
+  :hook (after-init . global-company-mode)
+  :config
+  (setq company-tooltip-align-annotations t))
+(use-package flycheck
+  :ensure t
+  :hook (after-init . global-flycheck-mode))
+(use-package exwm
+  :disabled
+  :ensure t
+  :config
+  (require 'exwm-config)
+  (exwm-config-default))
+(use-package highlight-numbers
+  :ensure t
+  :hook (prog-mode . highlight-numbers-mode))
+(use-package rainbow-delimiters
+  :ensure t
+  :hook (prog-mode . rainbow-delimiters-mode))
+(use-package highlight-parentheses
+  :ensure t
+  :hook (prog-mode . highlight-parentheses-mode))
+(use-package slime
+  :disabled
+  :ensure t
+  :config
+  (setq inferior-lisp-program "/usr/local/bin/sbcl"))
+(use-package tide
+  :ensure t
+  :after (flycheck company)
+  :hook ((before-save . tide-format-before-save)
+	 (typescript-mode . setup-tide-mode))
+  :config
+  (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
   (flycheck-mode +1)
@@ -75,16 +85,54 @@
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
   (company-mode +1))
+  (setq tide-completion-ignore-case t))
+(use-package web-mode :ensure t)
+(use-package magit
+  :ensure t
+  :bind ("C-x g" . magit-status))
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode 1))
+(use-package omnisharp
+  :disabled
+  :ensure t
+  :hook (csharp-mode . omnisharp-mode)
+  :config
+  (eval-after-load
+  'company
+  '(add-to-list 'company-backends 'company-omnisharp))
+  (setq omnisharp-server-executable-path "C:\\Users\\srubio.BETWEEN\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
+  (setq omnisharp-debug nil))
 
-;; aligns annotation to the right hand side
-(setq company-tooltip-align-annotations t)
-(setq tide-completion-ignore-case t)
-;;(require 'elm-mode)
+;;; Config:
+(setq inhibit-startup-screen t)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(electric-pair-mode 1)
+(global-auto-revert-mode t)
+;;epa enable ask for passphrase
+(setq epa-pinentry-mode 'loopback)
+(load-theme 'spacemacs-dark t)
+;;(load-theme 'deeper-blue t)
+;;(load-theme 'cyberpunk t)
+;;et-face-attribute 'default nil :height 100;;
 
-;; formats the buffer before saving
-(add-hook 'before-save-hook 'tide-format-before-save)
+;;;(setq ido-enable-flex-matching t)
+;;;(setq ido-everywhere t)
+;;;(ido-mode 1)
+;;;;; ido m-x
+;;;    (global-set-key
+;;;     "\M-x"
+;;;     (lambda ()
+;;;       (interactive)
+;;;       (call-interactively
+;;;        (intern
+;;;         (ido-completing-read
+;;;          "M-x "
+;;;          (all-completions "" obarray 'commandp))))))
 
-(add-hook 'typescript-mode-hook #'setup-tide-mode)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -96,59 +144,22 @@
  '(org-agenda-files (quote ("~/Dropbox/agenda.org")))
  '(package-selected-packages
    (quote
-    (flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
- '(send-mail-function 'smtpmail-send-it))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-;;epa enable ask for passphrase
- (setq epa-pinentry-mode 'loopback)
-;; flycheck global
-(add-hook 'after-init-hook #'global-flycheck-mode)
-;; company global
-(add-hook 'after-init-hook 'global-company-mode)
-(load-theme 'spacemacs-dark t)
-;;(load-theme 'deeper-blue t)
-;;(load-theme 'cyberpunk t)
-;;et-face-attribute 'default nil :height 100;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; PACKAGE: highlight-numbers         ;;
-;;                                    ;;
-;; GROUP: Faces -> Number Font Lock   ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-hook 'prog-mode-hook 'highlight-numbers-mode)
-;;; magit:
-(global-set-key (kbd "C-x g") 'magit-status)
-;; Source: http://www.emacswiki.org/emacs-en/download/misc-cmds.el
+    (rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
+ '(send-mail-function (quote smtpmail-send-it)))
+
+;;; functions:
 (defun revert-buffer-no-confirm ()
     "Revert buffer without confirmation."
     (interactive)
     (revert-buffer :ignore-auto :noconfirm))
-;;CSharp
-(add-hook 'csharp-mode-hook 'omnisharp-mode)
-(eval-after-load
- 'company
- '(add-to-list 'company-backends 'company-omnisharp))
-(setq sql-ms-program "sqlcmd")
-(setq omnisharp-server-executable-path "C:\\Users\\srubio.BETWEEN\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
-(setq omnisharp-debug nil)
-
-;;(require 'sgml-mode)
 ;; para formatear XML
 (defun reformat-xml ()
+  "Format xml document."
   (interactive)
   (save-excursion
     (sgml-pretty-print (point-min) (point-max))
     (indent-region (point-min) (point-max))))
 
-;;rainblow delimiters
-(require 'rainbow-delimiters)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'prog-mode-hook 'highlight-parentheses-mode)
-(provide 'init)
 ;;(defun connect-remote ()
 ;;  (interactive)
 ;;  (dired "/user@server:/home/user"))
