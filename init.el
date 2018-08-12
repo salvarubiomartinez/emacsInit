@@ -121,7 +121,7 @@
 ;;(load-theme 'deeper-blue t)
 ;;(load-theme 'cyberpunk t)
 ;;et-face-attribute 'default nil :height 100;;
-
+(setq dired-dwim-target t)
 ;;;(setq ido-enable-flex-matching t)
 ;;;(setq ido-everywhere t)
 ;;;(ido-mode 1)
