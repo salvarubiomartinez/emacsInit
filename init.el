@@ -25,7 +25,7 @@
   (evil-surround-mode 1))
 (use-package helm
   :disabled
-  :ensure t
+  :ensure nil
   :bind (("M-x" . helm-M-x)
 	 ("C-x r b" . helm-filtered-bookmarks)
 	 ("C-x C-f" . helm-find-files)
@@ -56,7 +56,7 @@
   :hook (after-init . global-flycheck-mode))
 (use-package exwm
   :disabled
-  :ensure t
+  :ensure nil
   :config
   (require 'exwm-config)
   (exwm-config-default))
@@ -71,7 +71,7 @@
   :hook (prog-mode . highlight-parentheses-mode))
 (use-package slime
   :disabled
-  :ensure t
+  :ensure nil
   :config
   (setq inferior-lisp-program "/usr/local/bin/sbcl"))
 (use-package tide
@@ -99,7 +99,7 @@
   (which-key-mode 1))
 (use-package omnisharp
   :disabled
-  :ensure t
+  :ensure nil
   :hook (csharp-mode . omnisharp-mode)
   :config
   (eval-after-load
