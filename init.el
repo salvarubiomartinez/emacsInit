@@ -35,7 +35,10 @@
   (helm-mode 1))
 (use-package ivy
   :ensure t
-  :bind ("C-s" . swiper)
+  :bind (("C-s" . swiper)
+	 ("C-c k" . counsel-ag)
+	 ("C-c j" . counsel-git-grep)
+	 ("C-x l" . counsel-locate))
   :hook (after-init . ivy-mode)
   :config
 ;;  (ivy-mode 1)
