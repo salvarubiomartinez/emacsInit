@@ -118,6 +118,8 @@
 ;;epa enable ask for passphrase
 (setq epa-pinentry-mode 'loopback)
 (load-theme 'spacemacs-dark t)
+(require 'powerline)
+(powerline-default-theme)
 ;;(load-theme 'deeper-blue t)
 ;;(load-theme 'cyberpunk t)
 ;;et-face-attribute 'default nil :height 100;;
@@ -147,7 +149,7 @@
  '(org-agenda-files (quote ("~/Dropbox/agenda.org")))
  '(package-selected-packages
    (quote
-    (rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
+    (powerline rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
  '(send-mail-function (quote smtpmail-send-it)))
 
 ;;; functions:
@@ -168,3 +170,9 @@
 ;;  (dired "/user@server:/home/user"))
 (provide 'init)
 ;;; init.el ends here
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
