@@ -44,8 +44,12 @@
 ;;  (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
+  (setq ivy-count-format "(%d/%d) ")
   (counsel-mode 1)
   (setq ivy-display-style 'fancy))
+(use-package counsel
+  :ensure t
+  :after ivy)
 (use-package company
   :ensure t
   :hook (after-init . global-company-mode)
@@ -89,7 +93,9 @@
   (tide-hl-identifier-mode +1)
   (company-mode +1))
   (setq tide-completion-ignore-case t))
-(use-package web-mode :ensure t)
+(use-package web-mode
+  :ensure t
+  :config (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 (use-package magit
   :ensure t
   :bind ("C-x g" . magit-status))
@@ -149,7 +155,7 @@
  '(org-agenda-files (quote ("~/Dropbox/agenda.org")))
  '(package-selected-packages
    (quote
-    (powerline rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
+    (powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
  '(send-mail-function (quote smtpmail-send-it)))
 
 ;;; functions:
