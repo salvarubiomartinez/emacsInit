@@ -24,8 +24,8 @@
   :config
   (evil-surround-mode 1))
 (use-package helm
-  :disabled
-  :ensure nil
+;;  :disabled
+  :ensure t
   :bind (("M-x" . helm-M-x)
 	 ("C-x r b" . helm-filtered-bookmarks)
 	 ("C-x C-f" . helm-find-files)
@@ -33,8 +33,12 @@
   :config
   (require 'helm-config)
   (helm-mode 1))
-(use-package ivy
+(use-package swiper-helm
   :ensure t
+  :bind ("C-s" . swiper-helm))
+(use-package ivy
+  :disabled
+  :ensure nil
   :bind (("C-s" . swiper)
 	 ("C-c k" . counsel-ag)
 	 ("C-c j" . counsel-git-grep)
@@ -48,7 +52,8 @@
   (counsel-mode 1)
   (setq ivy-display-style 'fancy))
 (use-package counsel
-  :ensure t
+  :disabled
+  :ensure nil
   :after ivy)
 (use-package company
   :ensure t
@@ -59,8 +64,8 @@
   :ensure t
   :hook (after-init . global-flycheck-mode))
 (use-package exwm
-  :disabled
-  :ensure nil
+;;  :disabled
+  :ensure t
   :config
   (require 'exwm-config)
   (exwm-config-default))
@@ -113,7 +118,10 @@
   '(add-to-list 'company-backends 'company-omnisharp))
   (setq omnisharp-server-executable-path "C:\\Users\\srubio.BETWEEN\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
   (setq omnisharp-debug nil))
-
+(use-package powerline
+  :ensure t
+  :config
+  (powerline-default-theme))
 ;;; Config:
 (setq inhibit-startup-screen t)
 (tool-bar-mode -1)
@@ -124,8 +132,8 @@
 ;;epa enable ask for passphrase
 (setq epa-pinentry-mode 'loopback)
 (load-theme 'spacemacs-dark t)
-(require 'powerline)
-(powerline-default-theme)
+;;(require 'powerline)
+;;(powerline-default-theme)
 ;;(load-theme 'deeper-blue t)
 ;;(load-theme 'cyberpunk t)
 ;;et-face-attribute 'default nil :height 100;;
@@ -152,10 +160,11 @@
  '(custom-safe-themes
    (quote
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "28ec8ccf6190f6a73812df9bc91df54ce1d6132f18b4c8fcc85d45298569eb53" "d6922c974e8a78378eacb01414183ce32bc8dbf2de78aabcc6ad8172547cb074" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "2a739405edf418b8581dcd176aaf695d319f99e3488224a3c495cb0f9fd814e3" default)))
+ '(helm-locate-project-list (quote ("~/Projects")))
  '(org-agenda-files (quote ("~/Dropbox/agenda.org")))
  '(package-selected-packages
    (quote
-    (powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
+    (swiper-helm powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
  '(send-mail-function (quote smtpmail-send-it)))
 
 ;;; functions:
