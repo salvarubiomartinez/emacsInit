@@ -61,8 +61,8 @@
   :ensure t
   :hook (after-init . global-flycheck-mode))
 (use-package exwm
-;;  :disabled
-  :ensure t
+  :disabled
+  :ensure nil
   :config
   (require 'exwm-config)
   (exwm-config-default))
@@ -106,8 +106,6 @@
   :config
   (which-key-mode 1))
 (use-package pdf-tools
-  :ensure t)
-(use-package tab-list
   :ensure t)
 (use-package omnisharp
   :disabled
