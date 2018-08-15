@@ -54,12 +54,12 @@
   :after ivy)
 (use-package company
   :ensure t
-  :hook (after-init . global-company-mode)
+  :hook (prog-mode . company-mode)
   :config
   (setq company-tooltip-align-annotations t))
 (use-package flycheck
   :ensure t
-  :hook (after-init . global-flycheck-mode))
+  :hook (prog-mode . flycheck-mode))
 (use-package exwm
   :disabled
   :ensure nil
@@ -106,17 +106,20 @@
   :config
   (which-key-mode 1))
 (use-package pdf-tools
-  :ensure t)
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.pdf?\\'" . pdf-view-mode))
+  (add-hook 'pdf-view-mode-hook 'pdf-isearch-minor-mode))
 (use-package omnisharp
-  :disabled
-  :ensure nil
+;;  :disabled
+  :ensure t
   :hook (csharp-mode . omnisharp-mode)
   :config
   (eval-after-load
   'company
   '(add-to-list 'company-backends 'company-omnisharp))
-  (setq omnisharp-server-executable-path "C:\\Users\\srubio.BETWEEN\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
-  (setq omnisharp-debug nil))
+;;  (setq omnisharp-server-executable-path "C:\\Users\\srubio.BETWEEN\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
+  (setq omnisharp-debug t))
 (use-package powerline
   :ensure t
   :config
