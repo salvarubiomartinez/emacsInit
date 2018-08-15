@@ -33,9 +33,6 @@
   :config
   (require 'helm-config)
   (helm-mode 1))
-(use-package swiper-helm
-  :ensure t
-  :bind ("C-s" . swiper-helm))
 (use-package ivy
   :disabled
   :ensure nil
@@ -108,6 +105,10 @@
   :ensure t
   :config
   (which-key-mode 1))
+(use-package pdf-tools
+  :ensure t)
+(use-package tab-list
+  :ensure t)
 (use-package omnisharp
   :disabled
   :ensure nil
@@ -164,7 +165,7 @@
  '(org-agenda-files (quote ("~/Dropbox/agenda.org")))
  '(package-selected-packages
    (quote
-    (swiper-helm powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
+    (pdf-tools tablist swiper-helm powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
  '(send-mail-function (quote smtpmail-send-it)))
 
 ;;; functions:
