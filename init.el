@@ -24,8 +24,8 @@
   :config
   (evil-surround-mode 1))
 (use-package helm
-;;  :disabled
-  :ensure t
+  :disabled
+  :ensure nil
   :bind (("M-x" . helm-M-x)
 	 ("C-x r b" . helm-filtered-bookmarks)
 	 ("C-x C-f" . helm-find-files)
@@ -34,10 +34,9 @@
   (require 'helm-config)
   (helm-mode 1))
 (use-package ivy
-  :disabled
-  :ensure nil
-  :bind (("C-s" . swiper)
-	 ("C-c k" . counsel-ag)
+;;  :disabled
+  :ensure t
+  :bind (("C-c k" . counsel-ag)
 	 ("C-c j" . counsel-git-grep)
 	 ("C-x l" . counsel-locate))
   :hook (after-init . ivy-mode)
@@ -49,9 +48,9 @@
   (counsel-mode 1)
   (setq ivy-display-style 'fancy))
 (use-package counsel
-  :disabled
-  :ensure nil
-  :after ivy)
+;;  :disabled
+  :ensure t)
+;;  :after ivy)
 (use-package company
   :ensure t
   :hook (prog-mode . company-mode)
