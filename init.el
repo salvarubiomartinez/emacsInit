@@ -18,11 +18,11 @@
 (use-package evil
   :ensure t
   :config
-  (evil-mode 1))
+  (evil-mode 1)
+  (evil-surround-mode 1))
 (use-package evil-surround
   :ensure t
-  :config
-  (evil-surround-mode 1))
+  :after evil)
 (use-package helm
   :disabled
   :ensure nil
