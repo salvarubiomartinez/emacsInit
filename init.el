@@ -117,7 +117,7 @@
   (eval-after-load
   'company
   '(add-to-list 'company-backends 'company-omnisharp))
-;;  (setq omnisharp-server-executable-path "C:\\Users\\srubio.BETWEEN\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
+  (setq omnisharp-server-executable-path "C:\\Users\\rubio\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
   (setq omnisharp-debug t))
 (use-package powerline
   :ensure t
