@@ -36,21 +36,21 @@
 (use-package ivy
 ;;  :disabled
   :ensure t
-  :bind (("C-c k" . counsel-ag)
-	 ("C-c j" . counsel-git-grep)
-	 ("C-x l" . counsel-locate))
   :hook (after-init . ivy-mode)
   :config
-;;  (ivy-mode 1)
+  (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
   (setq ivy-count-format "(%d/%d) ")
-  (counsel-mode 1)
   (setq ivy-display-style 'fancy))
 (use-package counsel
-;;  :disabled
-  :ensure t)
-;;  :after ivy)
+  :ensure t
+  :bind (("C-c k" . counsel-ag)
+	 ("C-c j" . counsel-git-grep)
+	 ("C-x l" . counsel-locate))
+  :config (counsel-mode 1))
+;;(use-package swiper
+;;  :ensure t)
 (use-package company
   :ensure t
   :hook (prog-mode . company-mode)
