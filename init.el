@@ -81,9 +81,10 @@
   (setq inferior-lisp-program "/usr/local/bin/sbcl"))
 (use-package tide
   :ensure t
-  :after (flycheck company)
-  :hook ((before-save . tide-format-before-save)
-	 (typescript-mode . setup-tide-mode))
+  :after (typescript-mode flycheck company)
+  :hook ((typescript-mode . tide-setup)
+	 (typescript-mode . tide-hl-identifier-mode)
+	 (before-save . tide-format-before-save))
   :config
   (defun setup-tide-mode ()
   (interactive)
@@ -132,7 +133,7 @@
 (global-auto-revert-mode t)
 ;;epa enable ask for passphrase
 (setq epa-pinentry-mode 'loopback)
-(load-theme 'spacemacs-dark t)
+(load-theme 'spacemacs-light t)
 ;;(require 'powerline)
 ;;(powerline-default-theme)
 ;;(load-theme 'deeper-blue t)
