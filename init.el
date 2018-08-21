@@ -18,7 +18,8 @@
 (use-package evil
   :ensure t
   :config
-  (evil-mode 1))
+  (evil-mode 1)
+  (evil-surround-mode 1))
 (use-package evil-surround
   :ensure t
   :config
@@ -40,21 +41,21 @@
 (use-package ivy
 ;;  :disabled
   :ensure t
-  :bind (("C-c k" . counsel-ag)
-	 ("C-c j" . counsel-git-grep)
-	 ("C-x l" . counsel-locate))
   :hook (after-init . ivy-mode)
   :config
-;;  (ivy-mode 1)
+  (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
   (setq ivy-count-format "(%d/%d) ")
-  (counsel-mode 1)
   (setq ivy-display-style 'fancy))
 (use-package counsel
-;;  :disabled
-  :ensure t)
-;;  :after ivy)
+  :ensure t
+  :bind (("C-c k" . counsel-ag)
+	 ("C-c j" . counsel-git-grep)
+	 ("C-x l" . counsel-locate))
+  :config (counsel-mode 1))
+;;(use-package swiper
+;;  :ensure t)
 (use-package company
   :ensure t
   :hook (prog-mode . company-mode)
@@ -85,9 +86,10 @@
   (setq inferior-lisp-program "/usr/local/bin/sbcl"))
 (use-package tide
   :ensure t
-  :after (flycheck company)
-  :hook ((before-save . tide-format-before-save)
-	 (typescript-mode . setup-tide-mode))
+  :after (typescript-mode flycheck company)
+  :hook ((typescript-mode . tide-setup)
+	 (typescript-mode . tide-hl-identifier-mode)
+	 (before-save . tide-format-before-save))
   :config
   (defun setup-tide-mode ()
   (interactive)
@@ -121,7 +123,7 @@
   (eval-after-load
   'company
   '(add-to-list 'company-backends 'company-omnisharp))
-;;  (setq omnisharp-server-executable-path "C:\\Users\\srubio.BETWEEN\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
+  (setq omnisharp-server-executable-path "C:\\Users\\rubio\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
   (setq omnisharp-debug t))
 (use-package powerline
   :ensure t
@@ -169,7 +171,7 @@
  '(org-agenda-files (quote ("~/Dropbox/agenda.org")))
  '(package-selected-packages
    (quote
-    (evil-escape evil-scape html2org latex-pretty-symbols pdf-tools powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
+    (evil-escape pdf-tools powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
  '(send-mail-function (quote smtpmail-send-it)))
 (setq helm-locate-project-list '("~/drakkart/"))
 ;; functions:
