@@ -27,7 +27,8 @@
 (use-package evil-escape
   :ensure t
   :config
-  (evil-escape-mode 1))
+  (evil-escape-mode 1)
+  (setq-default evil-escape-key-sequence "ij"))
 (use-package helm
   :disabled
   :ensure nil
