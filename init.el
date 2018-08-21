@@ -23,6 +23,10 @@
   :ensure t
   :config
   (evil-surround-mode 1))
+(use-package evil-escape
+  :ensure t
+  :config
+  (evil-escape-mode 1))
 (use-package helm
   :disabled
   :ensure nil
@@ -132,7 +136,7 @@
 (global-auto-revert-mode t)
 ;;epa enable ask for passphrase
 (setq epa-pinentry-mode 'loopback)
-(load-theme 'spacemacs-dark t)
+(load-theme 'spacemacs-light t)
 ;;(require 'powerline)
 ;;(powerline-default-theme)
 ;;(load-theme 'deeper-blue t)
@@ -161,13 +165,12 @@
  '(custom-safe-themes
    (quote
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "28ec8ccf6190f6a73812df9bc91df54ce1d6132f18b4c8fcc85d45298569eb53" "d6922c974e8a78378eacb01414183ce32bc8dbf2de78aabcc6ad8172547cb074" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "2a739405edf418b8581dcd176aaf695d319f99e3488224a3c495cb0f9fd814e3" default)))
- '(helm-locate-project-list (quote ("~/Projects")))
+ '(helm-locate-project-list (quote ("~/Projects")) t)
  '(org-agenda-files (quote ("~/Dropbox/agenda.org")))
  '(package-selected-packages
    (quote
-    (pdf-tools powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
- '(send-mail-function (quote smtpmail-send-it))
- )
+    (evil-escape evil-scape html2org latex-pretty-symbols pdf-tools powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
+ '(send-mail-function (quote smtpmail-send-it)))
 (setq helm-locate-project-list '("~/drakkart/"))
 ;; functions:
 (defun revert-buffer-no-confirm ()
