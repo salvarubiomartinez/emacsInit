@@ -1,4 +1,6 @@
-;;; pacakage:
+;; Eamcs configuration
+
+;; Add Melpa packages to Repos
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
@@ -15,20 +17,42 @@
   (require 'use-package))
 
 ;;; packages:
+
+;; Evil Mode
 (use-package evil
   :ensure t
   :config
+
   (evil-mode 1)
-  (evil-surround-mode 1))
-(use-package evil-surround
-  :ensure t
-  :config
-  (evil-surround-mode 1))
+  (use-package evil-leader
+    :ensure t
+    :config
+    (global-evil-leader-mode t)
+    (evil-leader/set-leader "<SPC>")
+    (evil-leader/set-key
+      "f" 'find-file
+      "b b" 'ivy-switch-buffer))
+
 (use-package evil-escape
   :ensure t
   :config
-  (evil-escape-mode 1)
-  (setq-default evil-escape-key-sequence "ij"))
+  (evil-escape-mode 1))
+  
+  (use-package evil-surround
+    :ensure t
+    :config (global-evil-surround-mode))
+
+  (use-package evil-indent-textobject
+    :ensure t)
+
+  (use-package evil-org
+    :ensure t
+    :config
+    (evil-org-set-key-theme 
+	  '(textobjects insert navigation additional shift todo heading))
+    (add-hook 'org-mode-hook (lambda () (evil-org-mode))))
+  )
+
 (use-package helm
   :disabled
   :ensure nil
@@ -139,7 +163,7 @@
 (global-auto-revert-mode t)
 ;;epa enable ask for passphrase
 (setq epa-pinentry-mode 'loopback)
-(load-theme 'spacemacs-light t)
+(load-theme 'spacemacs-dark t)
 ;;(require 'powerline)
 ;;(powerline-default-theme)
 ;;(load-theme 'deeper-blue t)
