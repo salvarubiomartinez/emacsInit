@@ -31,7 +31,19 @@
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key
       "f" 'find-file
-      "b b" 'ivy-switch-buffer))
+      "b b" 'ivy-switch-buffer
+      "b n" 'next-buffer
+      "b p" 'previous-buffer
+      "-" 'isearch-forward
+      "s" 'save-buffer
+      "c" 'save-buffers-kill-terminal
+      "e" 'eval-last-sexp
+      "1" 'delete-other-windows
+      "2" 'split-window-below
+      "3" 'split-window-horizontally
+      "o" 'other-window
+      "z" 'evil-emacs-state
+      "g" 'magit-status))
 
 (use-package evil-escape
   :ensure t
