@@ -43,6 +43,7 @@
       "3" 'split-window-horizontally
       "o" 'other-window
       "z" 'evil-emacs-state
+      "ñ" 'firefox
       "g" 'magit-status))
 
 (use-package evil-escape
@@ -223,6 +224,11 @@
   (save-excursion
     (sgml-pretty-print (point-min) (point-max))
     (indent-region (point-min) (point-max))))
+
+(defun firefox ()
+  "Launch firefox."
+  (interactive)
+  (async-shell-command "firefox"))
 
 ;;(defun connect-remote ()
 ;;  (interactive)
