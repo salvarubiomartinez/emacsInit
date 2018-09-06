@@ -6,7 +6,7 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 
-(package-initialize)
+;;(package-initialize)
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
@@ -160,7 +160,7 @@
   'company
   '(add-to-list 'company-backends 'company-omnisharp))
   (setq omnisharp-server-executable-path "C:\\Users\\rubio\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
-  (setq omnisharp-debug t))
+  (setq omnisharp-debug nil))
 (use-package powerline
   :ensure t
   :config
