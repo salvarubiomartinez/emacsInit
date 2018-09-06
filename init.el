@@ -173,7 +173,7 @@
 (electric-pair-mode 1)
 (global-auto-revert-mode t)
 ;;epa enable ask for passphrase
-(setq epa-pinentry-mode 'loopback)
+;;(setq epa-pinentry-mode 'loopback)
 (load-theme 'spacemacs-dark t)
 ;;(require 'powerline)
 ;;(powerline-default-theme)
