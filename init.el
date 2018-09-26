@@ -205,7 +205,7 @@
  '(helm-locate-project-list '("~/Projects") t)
  '(org-agenda-files '("~/Dropbox/agenda.org"))
  '(package-selected-packages
-   '(evil-escape pdf-tools powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company))
+   '(git-timemachine evil-escape pdf-tools powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company))
  '(send-mail-function 'smtpmail-send-it))
 (setq helm-locate-project-list '("~/drakkart/"))
 ;; functions:
