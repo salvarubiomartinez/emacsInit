@@ -1,5 +1,6 @@
 ;; Eamcs configuration
 
+
 ;; Add Melpa packages to Repos
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -35,9 +36,10 @@
     (global-evil-leader-mode t)
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key
-      "<SPC>" 'counsel-M-x 
+      "<SPC>" 'counsel-M-x
       "c C" 'compile
-      "f f" 'counsedr
+      "f f" 'counsel-find-file
+      "f s" 'save-buffer
       "-" 'isearch-forward
       "s s" 'swiper
       "s g" 'vc-git-grep
@@ -48,8 +50,8 @@
       "w m" 'delete-other-windows
       "w s" 'split-window-below
       "w v" 'split-window-right
-      "w <TAB>" 'spacemacs/alternate-window ;;'other-window
-      "<TAB>" 'spacemacs/alternate-buffer 
+      "w TAB" 'spacemacs/alternate-window ;;'other-window
+      "TAB" 'spacemacs/alternate-buffer
       "p f" 'project-find-file
       "z" 'evil-emacs-state
       "ñ" 'firefox
@@ -248,7 +250,6 @@
  ;; If there is more than one, they won't work right.
  )
 (setq sql-ms-program "sqlcmd")
-
 (defun spacemacs/alternate-buffer (&optional window)
   "Switch back and forth between current and last buffer in the
 current window."
