@@ -35,21 +35,25 @@
     (global-evil-leader-mode t)
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key
-      "f" 'find-file
-      "b b" 'ivy-switch-buffer
-      "b n" 'next-buffer
-      "b p" 'previous-buffer
+      "<SPC>" 'counsel-M-x 
+      "c C" 'compile
+      "f f" 'counsedr
       "-" 'isearch-forward
-      "s" 'save-buffer
-      "c" 'save-buffers-kill-terminal
-      "e" 'eval-last-sexp
-      "1" 'delete-other-windows
-      "2" 'split-window-below
-      "3" 'split-window-horizontally
-      "o" 'other-window
+      "s s" 'swiper
+      "s g" 'vc-git-grep
+      "q s" 'save-buffers-kill-terminal
+      "e e" 'eval-last-sexp
+      "e l" 'flycheck-list-errors
+      "e n" 'flycheck-next-error
+      "w m" 'delete-other-windows
+      "w s" 'split-window-below
+      "w v" 'split-window-right
+      "w <TAB>" 'spacemacs/alternate-window ;;'other-window
+      "<TAB>" 'spacemacs/alternate-buffer 
+      "p f" 'project-find-file
       "z" 'evil-emacs-state
       "ñ" 'firefox
-      "g" 'magit-status))
+      "g s" 'magit-status))
 
 (use-package evil-escape
   :ensure t
@@ -244,3 +248,32 @@
  ;; If there is more than one, they won't work right.
  )
 (setq sql-ms-program "sqlcmd")
+
+(defun spacemacs/alternate-buffer (&optional window)
+  "Switch back and forth between current and last buffer in the
+current window."
+  (interactive)
+  (let ((current-buffer (window-buffer window))
+        (buffer-predicate
+         (frame-parameter (window-frame window) 'buffer-predicate)))
+    ;; switch to first buffer previously shown in this window that matches
+    ;; frame-parameter `buffer-predicate'
+    (switch-to-buffer
+     (or (cl-find-if (lambda (buffer)
+                       (and (not (eq buffer current-buffer))
+                            (or (null buffer-predicate)
+                                (funcall buffer-predicate buffer))))
+                     (mapcar #'car (window-prev-buffers window)))
+         ;; `other-buffer' honors `buffer-predicate' so no need to filter
+         (other-buffer current-buffer t)))))
+
+(defun spacemacs/alternate-window ()
+  "Switch back and forth between current and last window in the
+current frame."
+  (interactive)
+  (let (;; switch to first window previously shown in this frame
+        (prev-window (get-mru-window nil t t)))
+    ;; Check window was not found successfully
+    (unless prev-window (user-error "Last window not found."))
+    (select-window prev-window)))
+
