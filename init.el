@@ -37,6 +37,10 @@
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key
       "<SPC>" 'counsel-M-x
+      "b b" 'ivy-switch-buffer 
+      "b n" 'switch-to-next-buffer
+      "b p" 'switch-to-prev-buffer
+      "b d" 'kill-buffer
       "c C" 'compile
       "f f" 'counsel-find-file
       "f s" 'save-buffer
