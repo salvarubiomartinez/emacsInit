@@ -189,6 +189,7 @@
 (scroll-bar-mode -1)
 (electric-pair-mode 1)
 (global-auto-revert-mode t)
+(toggle-frame-maximized)
 ;;epa enable ask for passphrase
 ;;(setq epa-pinentry-mode 'loopback)
 (load-theme 'spacemacs-dark t)
@@ -211,7 +212,11 @@
 ;;;         (ido-completing-read
 ;;;          "M-x "
 ;;;          (all-completions "" obarray 'commandp))))))
-
+;; Coding System
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-language-environment 'utf-8)
+(set-selection-coding-system 'utf-8)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
