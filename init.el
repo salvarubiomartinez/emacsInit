@@ -136,7 +136,7 @@
 ;;  :disabled
   :ensure t
   :config
-  (setq inferior-lisp-program "/usr/local/bin/sbcl"))
+  (setq inferior-lisp-program "/usr/bin/sbcl"))
 (use-package tide
   :ensure t
   :after (typescript-mode flycheck company)
@@ -190,6 +190,7 @@
 (electric-pair-mode 1)
 (global-auto-revert-mode t)
 (toggle-frame-maximized)
+(setq visible-bell 1)
 ;;epa enable ask for passphrase
 ;;(setq epa-pinentry-mode 'loopback)
 (load-theme 'spacemacs-dark t)
