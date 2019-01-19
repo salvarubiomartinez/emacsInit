@@ -37,7 +37,7 @@
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key
       "<SPC>" 'counsel-M-x
-      "b b" 'ivy-switch-buffer 
+      "b b" 'ivy-switch-buffer
       "b n" 'switch-to-next-buffer
       "b p" 'switch-to-prev-buffer
       "b d" 'kill-buffer
@@ -76,7 +76,7 @@
   (use-package evil-org
     :ensure t
     :config
-    (evil-org-set-key-theme 
+    (evil-org-set-key-theme
 	  '(textobjects insert navigation additional shift todo heading))
     (add-hook 'org-mode-hook (lambda () (evil-org-mode))))
   (use-package evil-magit
@@ -264,8 +264,7 @@
  )
 (setq sql-ms-program "sqlcmd")
 (defun spacemacs/alternate-buffer (&optional window)
-  "Switch back and forth between current and last buffer in the
-current window."
+  "Switch back and forth between current and last buffer in the current WINDOW."
   (interactive)
   (let ((current-buffer (window-buffer window))
         (buffer-predicate
@@ -282,12 +281,11 @@ current window."
          (other-buffer current-buffer t)))))
 
 (defun spacemacs/alternate-window ()
-  "Switch back and forth between current and last window in the
-current frame."
+  "Switch back and forth between current and last window in the current frame."
   (interactive)
   (let (;; switch to first window previously shown in this frame
         (prev-window (get-mru-window nil t t)))
     ;; Check window was not found successfully
-    (unless prev-window (user-error "Last window not found."))
+    (unless prev-window (user-error "Last window not found"))
     (select-window prev-window)))
 
