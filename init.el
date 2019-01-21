@@ -189,6 +189,7 @@
 (electric-pair-mode 1)
 (global-auto-revert-mode t)
 (toggle-frame-maximized)
+(setq visible-bell 1)
 ;;epa enable ask for passphrase
 ;;(setq epa-pinentry-mode 'loopback)
 (load-theme 'spacemacs-dark t)
