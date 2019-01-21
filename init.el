@@ -34,16 +34,16 @@
     (global-evil-leader-mode t)
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key
-      "<SPC>" 'counsel-M-x
+      "<SPC>" 'execute-extended-command
       "b b" 'ivy-switch-buffer 
       "b n" 'switch-to-next-buffer
       "b p" 'switch-to-prev-buffer
       "b d" 'kill-buffer
       "c C" 'compile
-      "f f" 'counsel-find-file
+      "f f" 'find-file
       "f s" 'save-buffer
       "-" 'isearch-forward
-      "s s" 'swiper
+;;      "s s" 'swiper
       "s g" 'vc-git-grep
       "q s" 'save-buffers-kill-terminal
       "e e" 'eval-last-sexp
@@ -57,7 +57,8 @@
       "p f" 'project-find-file
       "z" 'evil-emacs-state
       "ñ" 'firefox
-      "g s" 'magit-status))
+;;      "g s" 'magit-status
+      ))
 
 (use-package evil-escape
   :ensure t
