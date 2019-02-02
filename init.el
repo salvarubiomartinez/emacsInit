@@ -1,7 +1,5 @@
-;; Eamcs configuration
-
-
-;; Add Melpa packages to Repos
+;;;; Eamcs configuration:
+;;; Add Melpa packages to Repos
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
@@ -36,16 +34,15 @@
     (global-evil-leader-mode t)
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key
-      "<SPC>" 'counsel-M-x
-      "b b" 'ivy-switch-buffer
+      "<SPC>" 'execute-extended-command
       "b n" 'switch-to-next-buffer
       "b p" 'switch-to-prev-buffer
       "b d" 'kill-buffer
       "c C" 'compile
-      "f f" 'counsel-find-file
+      "f f" 'find-file
       "f s" 'save-buffer
       "-" 'isearch-forward
-      "s s" 'swiper
+;;      "s s" 'swiper
       "s g" 'vc-git-grep
       "q s" 'save-buffers-kill-terminal
       "e e" 'eval-last-sexp
@@ -59,7 +56,8 @@
       "p f" 'project-find-file
       "z" 'evil-emacs-state
       "ñ" 'firefox
-      "g s" 'magit-status))
+      "g s" 'magit-status
+      ))
 
 (use-package evil-escape
   :ensure t
@@ -72,7 +70,6 @@
 
   (use-package evil-indent-textobject
     :ensure t)
-
   (use-package evil-org
     :ensure t
     :config
@@ -82,17 +79,17 @@
   (use-package evil-magit
     :ensure t)
   )
-
-(use-package helm
-  :disabled
-  :ensure nil
-  :bind (("M-x" . helm-M-x)
-	 ("C-x r b" . helm-filtered-bookmarks)
-	 ("C-x C-f" . helm-find-files)
-	 ("C-x C-b" . helm-mini))
-  :config
-  (require 'helm-config)
-  (helm-mode 1))
+;;
+;;(use-package helm
+;;  :disabled
+;;  :ensure nil
+;;  :bind (("M-x" . helm-M-x)
+;;	 ("C-x r b" . helm-filtered-bookmarks)
+;;	 ("C-x C-f" . helm-find-files)
+;;	 ("C-x C-b" . helm-mini))
+;;  :config
+;;  (require 'helm-config)
+;;  (helm-mode 1))
 (use-package ivy
 ;;  :disabled
   :ensure t
@@ -103,12 +100,12 @@
   (setq enable-recursive-minibuffers t)
   (setq ivy-count-format "(%d/%d) ")
   (setq ivy-display-style 'fancy))
-(use-package counsel
-  :ensure t
-  :bind (("C-c k" . counsel-ag)
-	 ("C-c j" . counsel-git-grep)
-	 ("C-x l" . counsel-locate))
-  :config (counsel-mode 1))
+;;(use-package counsel
+;;  :ensure t
+;;  :bind (("C-c k" . counsel-ag)
+;;	 ("C-c j" . counsel-git-grep)
+;;	 ("C-x l" . counsel-locate))
+;;  :config (counsel-mode 1))
 (use-package company
   :ensure t
   :hook (prog-mode . company-mode)
@@ -117,12 +114,12 @@
 (use-package flycheck
   :ensure t
   :hook (prog-mode . flycheck-mode))
-(use-package exwm
-  :disabled
-  :ensure nil
-  :config
-  (require 'exwm-config)
-  (exwm-config-default))
+;;(use-package exwm
+;;  :disabled
+;;  :ensure nil
+;;  :config
+;;  (require 'exwm-config)
+;;  (exwm-config-default))
 (use-package highlight-numbers
   :ensure t
   :hook (prog-mode . highlight-numbers-mode))
@@ -132,11 +129,12 @@
 (use-package highlight-parentheses
   :ensure t
   :hook (prog-mode . highlight-parentheses-mode))
-(use-package slime
-;;  :disabled
-  :ensure t
-  :config
-  (setq inferior-lisp-program "/usr/bin/sbcl"))
+;;(use-package slime
+;;;;  :disabled
+;;  :ensure t
+;;  :config
+;;  ;;(setq inferior-lisp-program "/usr/local/bin/sbcl"))
+;;  (setq inferior-lisp-program "sbcl"))
 (use-package tide
   :ensure t
   :after (typescript-mode flycheck company)
@@ -163,21 +161,21 @@
   :ensure t
   :config
   (which-key-mode 1))
-(use-package pdf-tools
-  :ensure t
-  :config
-  (add-to-list 'auto-mode-alist '("\\.pdf?\\'" . pdf-view-mode))
-  (add-hook 'pdf-view-mode-hook 'pdf-isearch-minor-mode))
-(use-package omnisharp
-;;  :disabled
-  :ensure t
-  :hook (csharp-mode . omnisharp-mode)
-  :config
-  (eval-after-load
-  'company
-  '(add-to-list 'company-backends 'company-omnisharp))
-  (setq omnisharp-server-executable-path "C:\\Users\\rubio\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
-  (setq omnisharp-debug nil))
+;;(use-package pdf-tools
+;;  :ensure t
+;;  :config
+;;  (add-to-list 'auto-mode-alist '("\\.pdf?\\'" . pdf-view-mode))
+;;  (add-hook 'pdf-view-mode-hook 'pdf-isearch-minor-mode))
+;;(use-package omnisharp
+;;;;  :disabled
+;;  :ensure t
+;;  :hook (csharp-mode . omnisharp-mode)
+;;  :config
+;;  (eval-after-load
+;;  'company
+;;  '(add-to-list 'company-backends 'company-omnisharp))
+;;  (setq omnisharp-server-executable-path "C:\\Users\\rubio\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
+;;  (setq omnisharp-debug nil))
 (use-package powerline
   :ensure t
   :config
@@ -230,7 +228,7 @@
  '(org-agenda-files (quote ("~/Dropbox/agenda.org")))
  '(package-selected-packages
    (quote
-    (slime cider evil-magit git-timemachine evil-escape pdf-tools powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
+    (slime srefactor cider evil-magit git-timemachine evil-escape pdf-tools powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
  '(send-mail-function (quote smtpmail-send-it)))
 (setq helm-locate-project-list '("~/drakkart/"))
 ;; functions:
