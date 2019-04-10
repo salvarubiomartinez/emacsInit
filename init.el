@@ -35,6 +35,7 @@
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key
       "<SPC>" 'execute-extended-command
+      "b b" 'ivy-switch-buffer
       "b n" 'switch-to-next-buffer
       "b p" 'switch-to-prev-buffer
       "b d" 'kill-buffer
