@@ -135,6 +135,7 @@
 ;;  :config
 ;;  ;;(setq inferior-lisp-program "/usr/local/bin/sbcl"))
 ;;  (setq inferior-lisp-program "sbcl"))
+ (setq inferior-lisp-program "clisp")
 (use-package tide
   :ensure t
   :after (typescript-mode flycheck company)
