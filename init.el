@@ -168,16 +168,16 @@
 ;;  :config
 ;;  (add-to-list 'auto-mode-alist '("\\.pdf?\\'" . pdf-view-mode))
 ;;  (add-hook 'pdf-view-mode-hook 'pdf-isearch-minor-mode))
-;;(use-package omnisharp
-;;;;  :disabled
-;;  :ensure t
-;;  :hook (csharp-mode . omnisharp-mode)
-;;  :config
-;;  (eval-after-load
-;;  'company
-;;  '(add-to-list 'company-backends 'company-omnisharp))
-;;  (setq omnisharp-server-executable-path "C:\\Users\\rubio\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
-;;  (setq omnisharp-debug nil))
+(use-package omnisharp
+;;  :disabled
+  :ensure t
+  :hook (csharp-mode . omnisharp-mode)
+  :config
+  (eval-after-load
+  'company
+  '(add-to-list 'company-backends 'company-omnisharp))
+  (setq omnisharp-server-executable-path "C:\\Users\\rubio\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
+  (setq omnisharp-debug nil))
 (use-package powerline
   :ensure t
   :config
@@ -261,7 +261,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+  '(company-tooltip ((t (:foreground "darkgray")))))
+
 (setq sql-ms-program "sqlcmd")
 (defun spacemacs/alternate-buffer (&optional window)
   "Switch back and forth between current and last buffer in the current WINDOW."
