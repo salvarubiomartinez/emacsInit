@@ -55,6 +55,7 @@
       "w TAB" 'spacemacs/alternate-window ;;'other-window
       "TAB" 'spacemacs/alternate-buffer
       "p f" 'project-find-file
+      "p s" 'project-find-regexp
       "z" 'evil-emacs-state
       "ñ" 'firefox
       "g s" 'magit-status
