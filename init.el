@@ -102,12 +102,12 @@
   (setq enable-recursive-minibuffers t)
   (setq ivy-count-format "(%d/%d) ")
   (setq ivy-display-style 'fancy))
-;;(use-package counsel
-;;  :ensure t
-;;  :bind (("C-c k" . counsel-ag)
-;;	 ("C-c j" . counsel-git-grep)
-;;	 ("C-x l" . counsel-locate))
-;;  :config (counsel-mode 1))
+(use-package counsel
+  :ensure t
+  :bind (("C-c k" . counsel-ag)
+	 ("C-c j" . counsel-git-grep)
+	 ("C-x l" . counsel-locate))
+  :config (counsel-mode 1))
 (use-package company
   :ensure t
   :hook (prog-mode . company-mode)
@@ -122,6 +122,10 @@
 ;;  :config
 ;;  (require 'exwm-config)
 ;;  (exwm-config-default))
+(use-package projectile
+  :ensure t
+  :bind-keymap ("C-c p" . projectile-command-map)
+  :config (setq projectile-completion-system 'ivy))
 (use-package highlight-numbers
   :ensure t
   :hook (prog-mode . highlight-numbers-mode))
@@ -169,20 +173,41 @@
 ;;  :config
 ;;  (add-to-list 'auto-mode-alist '("\\.pdf?\\'" . pdf-view-mode))
 ;;  (add-hook 'pdf-view-mode-hook 'pdf-isearch-minor-mode))
-(use-package omnisharp
-;;  :disabled
-  :ensure t
-  :hook (csharp-mode . omnisharp-mode)
-  :config
-  (eval-after-load
-  'company
-  '(add-to-list 'company-backends 'company-omnisharp))
-  (setq omnisharp-server-executable-path "C:\\Users\\rubio\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
-  (setq omnisharp-debug nil))
+;;(use-package omnisharp
+;;;;  :disabled
+;;  :ensure t
+;;  :hook (csharp-mode . omnisharp-mode)
+;;  :config
+;;  (eval-after-load
+;;  'company
+;;  '(add-to-list 'company-backends 'company-omnisharp))
+;;  (setq omnisharp-server-executable-path "C:\\Users\\rubio\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
+;;  (setq omnisharp-debug nil))
+(use-package elm-mode
+  :ensure t)
 (use-package powerline
   :ensure t
   :config
   (powerline-default-theme))
+;; lsp
+(use-package lsp-mode
+  :ensure t
+  :hook (prog-mode . lsp)
+  :config (setq lsp-enable-snippet nil)
+          (add-hook 'after-save-hook (lambda () (when (lsp-mode) (lsp-format-buffer))))
+  :commands (lsp lsp-deferred))
+
+;; optionally
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+(use-package company-lsp
+  :ensure t
+  :commands company-lsp)
+(use-package exec-path-from-shell
+  :ensure t
+  :config (exec-path-from-shell-initialize))
+
 ;;; Config:
 (setq inhibit-startup-screen t)
 (tool-bar-mode -1)
@@ -231,9 +256,8 @@
  '(org-agenda-files (quote ("~/Dropbox/agenda.org")))
  '(package-selected-packages
    (quote
-    (slime srefactor cider evil-magit git-timemachine evil-escape pdf-tools powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
+    (projectile exec-path-from-shell lsp-ui company-lsp lsp-ivy lsp-mode slime srefactor cider evil-magit git-timemachine evil-escape pdf-tools powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
  '(send-mail-function (quote smtpmail-send-it)))
-(setq helm-locate-project-list '("~/drakkart/"))
 ;; functions:
 (defun revert-buffer-no-confirm ()
     "Revert buffer without confirmation."
@@ -247,11 +271,6 @@
     (sgml-pretty-print (point-min) (point-max))
     (indent-region (point-min) (point-max))))
 
-(defun firefox ()
-  "Launch firefox."
-  (interactive)
-  (async-shell-command "firefox"))
-
 ;;(defun connect-remote ()
 ;;  (interactive)
 ;;  (dired "/user@server:/home/user"))
@@ -262,9 +281,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-  '(company-tooltip ((t (:foreground "darkgray")))))
+ '(company-tooltip ((t (:foreground "darkgray")))))
 
 (setq sql-ms-program "sqlcmd")
+
 (defun spacemacs/alternate-buffer (&optional window)
   "Switch back and forth between current and last buffer in the current WINDOW."
   (interactive)
