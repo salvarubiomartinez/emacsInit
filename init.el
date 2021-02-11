@@ -25,6 +25,9 @@
 ;; Evil Mode
 (use-package evil
   :ensure t
+  :init
+  (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+  (setq evil-want-keybinding nil)
   :config
 
   (evil-mode 1)
@@ -78,9 +81,13 @@
     (evil-org-set-key-theme
 	  '(textobjects insert navigation additional shift todo heading))
     (add-hook 'org-mode-hook (lambda () (evil-org-mode))))
-  (use-package evil-magit
-    :ensure t)
   )
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
 ;;
 ;;(use-package helm
 ;;  :disabled
@@ -173,40 +180,40 @@
 ;;  :config
 ;;  (add-to-list 'auto-mode-alist '("\\.pdf?\\'" . pdf-view-mode))
 ;;  (add-hook 'pdf-view-mode-hook 'pdf-isearch-minor-mode))
-;;(use-package omnisharp
-;;;;  :disabled
-;;  :ensure t
-;;  :hook (csharp-mode . omnisharp-mode)
-;;  :config
-;;  (eval-after-load
-;;  'company
-;;  '(add-to-list 'company-backends 'company-omnisharp))
+(use-package omnisharp
+;;  :disabled
+  :ensure t
+  :hook (csharp-mode . omnisharp-mode)
+  :config
+  (eval-after-load
+  'company
+  '(add-to-list 'company-backends 'company-omnisharp))
 ;;  (setq omnisharp-server-executable-path "C:\\Users\\rubio\\Downloads\\omnisharp-win-x86\\OmniSharp.exe")
-;;  (setq omnisharp-debug nil))
-(use-package elm-mode
-  :ensure t)
+  (setq omnisharp-debug nil))
+;;(use-package elm-mode
+;;  :ensure t)
 (use-package powerline
   :ensure t
   :config
   (powerline-default-theme))
-;; lsp
-(use-package lsp-mode
-  :ensure t
-  :hook (prog-mode . lsp)
-  :config (setq lsp-enable-snippet nil)
-          (add-hook 'after-save-hook (lambda () (when (lsp-mode) (lsp-format-buffer))))
-  :commands (lsp lsp-deferred))
+;;;; lsp
+;;(use-package lsp-mode
+;;  :ensure t
+;;  :hook (prog-mode . lsp)
+;;  :config (setq lsp-enable-snippet nil)
+;;          (add-hook 'after-save-hook (lambda () (when (lsp-mode) (lsp-format-buffer))))
+;;  :commands (lsp lsp-deferred))
 
 ;; optionally
-(use-package lsp-ui
-  :ensure t
-  :commands lsp-ui-mode)
-(use-package company-lsp
-  :ensure t
-  :commands company-lsp)
-(use-package exec-path-from-shell
-  :ensure t
-  :config (exec-path-from-shell-initialize))
+;;(use-package lsp-ui
+;;  :ensure t
+;;  :commands lsp-ui-mode)
+;;(use-package company-lsp
+;;  :ensure t
+;;  :commands company-lsp)
+;;(use-package exec-path-from-shell
+;;  :ensure t
+;;  :config (exec-path-from-shell-initialize))
 
 ;;; Config:
 (setq inhibit-startup-screen t)
