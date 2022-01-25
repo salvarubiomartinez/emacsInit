@@ -37,7 +37,7 @@
     (global-evil-leader-mode t)
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key
-      "<SPC>" 'execute-extended-command
+      "<SPC>" 'counsel-M-x
       "b b" 'ivy-switch-buffer
       "b n" 'switch-to-next-buffer
       "b p" 'switch-to-prev-buffer
@@ -151,10 +151,12 @@
  (setq inferior-lisp-program "clisp")
 (use-package tide
   :ensure t
+;;  :bind ("C-]" . tide-server-list-mode-abbrev-table)
   :after (typescript-mode flycheck company)
   :hook ((typescript-mode . tide-setup)
 	 (typescript-mode . tide-hl-identifier-mode)
-	 (before-save . tide-format-before-save))
+	;; (before-save . tide-format-before-save)
+	 )
   :config
   (defun setup-tide-mode ()
   (interactive)
@@ -165,6 +167,9 @@
   (tide-hl-identifier-mode +1)
   (company-mode +1))
   (setq tide-completion-ignore-case t))
+(use-package prettier-js
+  :ensure t
+  :hook ((typescript-mode . prettier-js-mode)))
 (use-package web-mode
   :ensure t
   :config (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
@@ -184,7 +189,9 @@
 ;;  :disabled
   :ensure t
   :hook (csharp-mode . omnisharp-mode)
+  :bind-keymap ("C-]" . omnisharp-find-implementations)
   :config
+  (evil-define-key 'normal omnisharp-mode-map (kbd "C-]") 'omnisharp-find-implementations)
   (eval-after-load
   'company
   '(add-to-list 'company-backends 'company-omnisharp))
@@ -192,6 +199,7 @@
   (setq omnisharp-debug nil))
 ;;(use-package elm-mode
 ;;  :ensure t)
+
 (use-package powerline
   :ensure t
   :config
@@ -257,14 +265,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "28ec8ccf6190f6a73812df9bc91df54ce1d6132f18b4c8fcc85d45298569eb53" "d6922c974e8a78378eacb01414183ce32bc8dbf2de78aabcc6ad8172547cb074" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "2a739405edf418b8581dcd176aaf695d319f99e3488224a3c495cb0f9fd814e3" default)))
- '(helm-locate-project-list (quote ("~/Projects")) t)
- '(org-agenda-files (quote ("~/Dropbox/agenda.org")))
+   '("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "28ec8ccf6190f6a73812df9bc91df54ce1d6132f18b4c8fcc85d45298569eb53" "d6922c974e8a78378eacb01414183ce32bc8dbf2de78aabcc6ad8172547cb074" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "2a739405edf418b8581dcd176aaf695d319f99e3488224a3c495cb0f9fd814e3" default))
+ '(helm-locate-project-list '("~/Projects") t)
+ '(org-agenda-files '("~/Dropbox/agenda.org"))
  '(package-selected-packages
-   (quote
-    (projectile exec-path-from-shell lsp-ui company-lsp lsp-ivy lsp-mode slime srefactor cider evil-magit git-timemachine evil-escape pdf-tools powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company)))
- '(send-mail-function (quote smtpmail-send-it)))
+   '(prettier-js projectile exec-path-from-shell lsp-ui company-lsp lsp-ivy lsp-mode slime srefactor cider evil-magit git-timemachine evil-escape pdf-tools powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company))
+ '(prettier-js-command
+   "~/between/drakkart-client/node_modules/prettier/bin-prettier.js")
+ '(send-mail-function 'smtpmail-send-it))
 ;; functions:
 (defun revert-buffer-no-confirm ()
     "Revert buffer without confirmation."
@@ -288,7 +296,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-tooltip ((t (:foreground "darkgray")))))
+ )
 
 (setq sql-ms-program "sqlcmd")
 
