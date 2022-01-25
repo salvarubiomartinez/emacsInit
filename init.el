@@ -150,6 +150,7 @@
 ;;  (setq inferior-lisp-program "sbcl"))
  (setq inferior-lisp-program "clisp")
 (use-package tide
+;;  :disabled
   :ensure t
 ;;  :bind ("C-]" . tide-server-list-mode-abbrev-table)
   :after (typescript-mode flycheck company)
@@ -186,7 +187,7 @@
 ;;  (add-to-list 'auto-mode-alist '("\\.pdf?\\'" . pdf-view-mode))
 ;;  (add-hook 'pdf-view-mode-hook 'pdf-isearch-minor-mode))
 (use-package omnisharp
-;;  :disabled
+ ;; :disabled
   :ensure t
   :hook (csharp-mode . omnisharp-mode)
   :bind-keymap ("C-]" . omnisharp-find-implementations)
@@ -204,6 +205,14 @@
   :ensure t
   :config
   (powerline-default-theme))
+
+
+;;;; eglot
+;;(use-package eglot
+;;  :ensure t
+;;  :config
+;;  (add-to-list 'eglot-server-programs '(csharp-mode . ("mono" "/home/retterblond/Apps/omnisharp/omnisharp/OmniSharp.exe")))
+;;  (add-hook 'csharp-mode-hook 'eglot-ensure))
 ;;;; lsp
 ;;(use-package lsp-mode
 ;;  :ensure t
@@ -269,7 +278,7 @@
  '(helm-locate-project-list '("~/Projects") t)
  '(org-agenda-files '("~/Dropbox/agenda.org"))
  '(package-selected-packages
-   '(prettier-js projectile exec-path-from-shell lsp-ui company-lsp lsp-ivy lsp-mode slime srefactor cider evil-magit git-timemachine evil-escape pdf-tools powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company))
+   '(eglot prettier-js projectile exec-path-from-shell lsp-ui company-lsp lsp-ivy lsp-mode slime srefactor cider evil-magit git-timemachine evil-escape pdf-tools powerline counsel rainbow-delimiters-mode flycheck-clojure clojure-mode 4clojure flycheck-elixir elixir-mode transpose-frame exwm highlight-parentheses rainbow-delimiters elm-mode afternoon-theme cyberpunk-theme solarized-theme web-mode omnisharp csharp-mode evil-surround magit highlight-symbol highlight-numbers spacemacs-theme zenburn-theme tide which-key helm flycheck evil company))
  '(prettier-js-command
    "~/between/drakkart-client/node_modules/prettier/bin-prettier.js")
  '(send-mail-function 'smtpmail-send-it))
